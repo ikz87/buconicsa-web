@@ -43,7 +43,7 @@ function App() {
         <div className="max-w-5xl mx-auto md:px-6 px-4 py-4 gap-2 flex justify-between items-center">
           <div className="flex flex-row gap-4 items-center justify-center">
             <img src="/buconicsa.jpg" alt="BUCONIC, SA Logo" className="h-12" />
-            <h1 className="font-bold text-2xl text-primary">BUCONIC, SA</h1>
+            <h1 className="font-bold md:text-2xl text-lg text-primary">BUCONIC, SA</h1>
             <motion.a 
               href="https://wa.me/50588123313"
               initial={{ 
@@ -87,7 +87,7 @@ function App() {
           </div>
           <motion.a
             href="#contacto"
-            className="bg-light text-primary cursor-pointer border-2 border-secondary px-4 py-2 rounded-lg font-semibold"
+            className="bg-light text-primary cursor-pointer border-2 border-secondary md:px-4 px-2 py-2 rounded-lg font-semibold"
             initial={{ 
               backgroundColor: "#C2DCEB",
             }}
@@ -432,7 +432,7 @@ function App() {
                     scale: 1.05,
                     transition: { duration: 0.15 },
                   }}
-                  className="flex-1 text-primary px-4 py-2 rounded-lg text-sm font-semibold transition text-center"
+                  className="flex-1 text-primary md:px-4 px-2 py-2 rounded-lg text-sm font-semibold transition text-center"
                 >
                   Abrir en Waze
                 </motion.a>
@@ -453,7 +453,7 @@ function App() {
                     scale: 1.05,
                     transition: { duration: 0.15 },
                   }}
-                  className="flex-1 text-primary px-4 py-2 rounded-lg text-sm font-semibold transition text-center"
+                  className="flex-1 text-primary md:px-4 px-2 py-2 rounded-lg text-sm font-semibold transition text-center"
                 >
                   Abrir en Google Maps
                 </motion.a>
