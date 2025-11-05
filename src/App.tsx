@@ -2,14 +2,45 @@ import { motion } from "motion/react"
 import { 
   ChartNoAxesCombined,
   DollarSign,
+  Phone,
+  Mail,
+  MapPin,
+  Copy,
+  Check,
 } from "lucide-react";
+import { useState } from "react";
+
+function MapEmbed() {
+  const lat = 12.630397;
+  const lng = -87.132293;
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+  
+  return (
+    <iframe
+      src={`https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${lat},${lng}&zoom=17`}
+      allowFullScreen
+      loading="lazy"
+      className="w-full h-full"
+    />
+  );
+}
 
 function App() {
+  const [copiedField, setCopiedField] = useState<string | null>(null);
+  const lat = 12.630397;
+  const lng = -87.132293;
+
+  const copyToClipboard = (text: string, field: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedField(field);
+    setTimeout(() => setCopiedField(null), 2000);
+  };
+
   return (
     <div className="min-h-screen bg-slate-100">
       {/*Navigation */}
       <nav className="bg-white border-b-2 border-secondary shadow-xl fixed w-full top-0 z-50">
-        <div className="max-w-5xl mx-auto px-6 py-4 gap-2 flex justify-between items-center">
+        <div className="max-w-5xl mx-auto md:px-6 px-4 py-4 gap-2 flex justify-between items-center">
           <div className="flex flex-row gap-4 items-center justify-center">
             <img src="/buconicsa.jpg" alt="BUCONIC, SA Logo" className="h-12" />
             <h1 className="font-bold text-2xl text-primary">BUCONIC, SA</h1>
@@ -56,7 +87,7 @@ function App() {
           </div>
           <motion.a
             href="#contacto"
-            className="bg-light text-primary cursor-pointer border-2 border-secondary px-6 py-2 rounded-lg font-semibold"
+            className="bg-light text-primary cursor-pointer border-2 border-secondary px-4 py-2 rounded-lg font-semibold"
             initial={{ 
               backgroundColor: "#C2DCEB",
             }}
@@ -81,46 +112,42 @@ function App() {
         <motion.a 
           href="https://wa.me/50588123313"
           initial={{ 
-            backgroundColor: "#7BF1A8",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)"
+            backgroundColor: "#C2DCEB",
           }}
           animate={{ 
-            backgroundColor: "#7BF1A8", 
+            backgroundColor: "#C2DCEB", 
             scale: 1,
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
             transition: { duration: 0.3 } 
           }}
           whileHover={{
-            backgroundColor: "#22c55e",
-            scale: 1.1,
-            boxShadow: "0 6px 20px rgba(34, 197, 94, 0.5)",
-            transition: { duration: 0.15 },
+            backgroundColor: "#7BB7D9",
+            scale: 1.05,
+            transition: { duration: 0.2 },
           }}
-          className="cursor-pointer rounded-full p-3 border-0">
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="black" className="bi bi-whatsapp" viewBox="0 0 16 16">
+
+          className="cursor-pointer rounded-full p-3 border-2 border-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#126ab5" className="bi bi-whatsapp" viewBox="0 0 16 16">
             <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
           </svg>
         </motion.a>
         <motion.a 
           href="https://www.instagram.com/buconic_sa/"
-          initial={{ 
-            backgroundColor: "#fda4af",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)"
-          }}
-          animate={{ 
-            backgroundColor: "#fda4af", 
-            scale: 1,
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-            transition: { duration: 0.3 } 
-          }}
-          whileHover={{
-            backgroundColor: "#f43f5e",
-            scale: 1.1,
-            boxShadow: "0 6px 20px rgba(244, 63, 94, 0.5)",
-            transition: { duration: 0.15 },
-          }}
-          className="cursor-pointer rounded-full p-3 border-0">
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" className="bi bi-instagram" viewBox="0 0 16 16">
+                        initial={{ 
+                backgroundColor: "#C2DCEB",
+              }}
+              animate={{ 
+                backgroundColor: "#C2DCEB", 
+                scale: 1,
+                transition: { duration: 0.3 } 
+              }}
+              whileHover={{
+                backgroundColor: "#7BB7D9",
+                scale: 1.05,
+                transition: { duration: 0.2 },
+              }}
+
+          className="cursor-pointer rounded-full p-3 border-2 border-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#126ab5" className="bi bi-instagram" viewBox="0 0 16 16">
             <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
           </svg>
         </motion.a>
@@ -132,15 +159,23 @@ function App() {
 
       {/* Hero Section */}
       <section className="mt-36 mb-20 lg:border-l-2 border-secondary max-w-5xl mx-auto md:py-8 px-8 lg:px-0">
-        <div className="md:pl-6 mx-auto">
-          <div className="max-w-3xl">
-            <h2 className="md:text-5xl text-3xl font-bold text-primary mb-6">
-              Bursátiles y Contabilidad de Nicaragua, S.A.
-            </h2>
-            <p className="md:text-xl text-slate-600 mb-8">
-              Más de 10 años ayudando a empresas a optimizar ingresos, 
-              rentabilidad, productividad de equipos y flujo de efectivo.
-            </p>
+        <div className="lg:grid lg:grid-cols-2">
+          <div className="md:pl-6 mx-auto h-max">
+            <div className="max-w-3xl">
+              <h2 className="md:text-5xl text-3xl font-bold text-primary mb-6">
+                Bursátiles y Contabilidad de Nicaragua, S.A.
+              </h2>
+              <p className="md:text-xl text-slate-600 mb-8">
+                Más de 10 años ayudando a empresas a optimizar ingresos, 
+                rentabilidad, productividad de equipos y flujo de efectivo.
+              </p>
+            </div>
+          </div>
+          <div className="relative h-full lg:block hidden">
+              <img 
+                className="absolute aspect-square border-2 border-secondary shadow-md left-1/2 rounded-full object-cover h-full -translate-x-1/2"
+                src="/main.jpg"
+              />
           </div>
         </div>
         <div className="text-slate-700 w-full mt-16 text-justify bg-white p-6 border-2 border-secondary lg:border-l-0 rounded-md lg:rounded-l-none shadow-md flex flex-col gap-4">
@@ -290,33 +325,168 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contacto" className="py-20 px-6 bg-primary text-white">
+      <section
+        id="contacto"
+        className="py-14 px-6 bg-primary text-white"
+      >
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-3xl font-bold mb-6">
-            ¿Listo para Transformar tu Negocio?
+            Contacto
           </h3>
-          <p className="text-xl text-light mb-8">
-            Conversemos sobre cómo podemos ayudarte a alcanzar tus objetivos empresariales.
-          </p>
-          <motion.a
-            initial={{ 
-              backgroundColor: "#ffffff",
-            }}
-            animate={{ 
-              backgroundColor: "#ffffff", 
-              scale: 1,
-              transition: { duration: 0.2 } 
-            }}
-            whileHover={{
-              backgroundColor: "#C2DCEB",
-              scale: 1.05,
-              transition: { duration: 0.15 },
-            }}
-            href="mailto:contacto@buconicsa.com"
-            className="inline-block text-primary px-8 py-3 rounded-lg text-lg font-semibold transition"
-          >
-            Solicitar Consulta
-          </motion.a>
+          <div className="max-w-4xl mb-16 text-left mx-auto grid md:grid-cols-2">
+            <div className="md:border-r-1 border-r-0 md:pr-3 md:py-4 md:pb-4 pb-2 ">
+              <div className="border-2 h-64 border-white rounded-md overflow-hidden shadow-md ">
+                <MapEmbed />
+              </div>
+            </div>
+
+            <div className="md:pl-3 md:border-l-1 flex gap-4 flex-col justify-center">
+              <div className="flex gap-2 font-bold flex-row items-center">
+                <Phone className="w-8 aspect-square flex-shrink-0" />
+                <a
+                  href="tel:+50588123313"
+                  className="hover:underline"
+                >
+                  +505 8812-3313
+                </a>
+                <button
+                  onClick={() =>
+                    copyToClipboard(
+                      "+505 8812-3313",
+                      "phone"
+                    )
+                  }
+                  className="ml-auto p-1 hover:bg-white/20 rounded transition"
+                  title="Copiar teléfono"
+                >
+                  {copiedField === "phone" ? (
+                    <Check className="w-5 h-5" />
+                  ) : (
+                    <Copy className="w-5 h-5" />
+                  )}
+                </button>
+              </div>
+              <div className="flex gap-2 font-bold flex-row items-center">
+                <Mail className="w-8 aspect-square flex-shrink-0" />
+                <a
+                  href="mailto:wmadrigal@buconicsa.com"
+                  className="hover:underline"
+                >
+                  wmadrigal@buconicsa.com
+                </a>
+                <button
+                  onClick={() =>
+                    copyToClipboard(
+                      "wmadrigal@buconicsa.com",
+                      "email"
+                    )
+                  }
+                  className="ml-auto p-1 hover:bg-white/20 rounded transition"
+                  title="Copiar email"
+                >
+                  {copiedField === "email" ? (
+                    <Check className="w-5 h-5" />
+                  ) : (
+                    <Copy className="w-5 h-5" />
+                  )}
+                </button>
+              </div>
+              <div className="flex gap-2 font-bold flex-row items-center">
+                <MapPin className="w-8 aspect-square flex-shrink-0" />
+                  <span>
+                    Esquina de los bancos 20 vrs al sur,
+                    Chinandega
+                  </span>
+                  <button
+                    onClick={() =>
+                      copyToClipboard(
+                        "Esquina de los bancos 20 vrs al sur, Chinandega",
+                        "address"
+                      )
+                    }
+                    className="ml-auto p-1 hover:bg-white/20 rounded transition"
+                    title="Copiar dirección"
+                  >
+                    {copiedField === "address" ? (
+                      <Check className="w-5 h-5" />
+                    ) : (
+                      <Copy className="w-5 h-5" />
+                    )}
+                  </button>
+              </div>
+              <div className="flex gap-4 max-w-lg w-full mx-auto mt-2">
+                <motion.a
+                  href={`https://waze.com/ul?ll=${lat},${lng}&navigate=yes`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{
+                    backgroundColor: "#ffffff",
+                  }}
+                  animate={{
+                    backgroundColor: "#ffffff",
+                    scale: 1,
+                    transition: { duration: 0.2 },
+                  }}
+                  whileHover={{
+                    backgroundColor: "#C2DCEB",
+                    scale: 1.05,
+                    transition: { duration: 0.15 },
+                  }}
+                  className="flex-1 text-primary px-4 py-2 rounded-lg text-sm font-semibold transition text-center"
+                >
+                  Abrir en Waze
+                </motion.a>
+                <motion.a
+                  href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{
+                    backgroundColor: "#ffffff",
+                  }}
+                  animate={{
+                    backgroundColor: "#ffffff",
+                    scale: 1,
+                    transition: { duration: 0.2 },
+                  }}
+                  whileHover={{
+                    backgroundColor: "#C2DCEB",
+                    scale: 1.05,
+                    transition: { duration: 0.15 },
+                  }}
+                  className="flex-1 text-primary px-4 py-2 rounded-lg text-sm font-semibold transition text-center"
+                >
+                  Abrir en Google Maps
+                </motion.a>
+              </div>
+            </div>
+          </div>
+          <div className=" mx-auto flex flex-col">
+            <h3 className="text-3xl font-bold mb-6">
+              ¿Listo para Transformar tu Negocio?
+            </h3>
+            <p className="text-xl text-light mb-8">
+              Conversemos sobre cómo podemos ayudarte a alcanzar tus objetivos empresariales.
+            </p>
+            <motion.a
+              initial={{ 
+                backgroundColor: "#ffffff",
+              }}
+              animate={{ 
+                backgroundColor: "#ffffff", 
+                scale: 1,
+                transition: { duration: 0.2 } 
+              }}
+              whileHover={{
+                backgroundColor: "#C2DCEB",
+                scale: 1.05,
+                transition: { duration: 0.15 },
+              }}
+              href="mailto:contacto@buconicsa.com"
+              className="mx-auto text-primary px-8 py-3 rounded-lg text-lg font-semibold transition"
+            >
+              Solicitar Consulta
+            </motion.a>
+          </div>
         </div>
       </section>
 
