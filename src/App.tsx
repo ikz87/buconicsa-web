@@ -17,7 +17,7 @@ function MapEmbed() {
   
   return (
     <iframe
-      src={`https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${lat},${lng}&zoom=17`}
+      src={`https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${lat},${lng}&zoom=15`}
       allowFullScreen
       loading="lazy"
       className="w-full h-full"
